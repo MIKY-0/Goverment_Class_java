@@ -29,10 +29,12 @@ public class FileServer {
         }
 
         System.out.println("파일 서버 시작 - 포트 : " + PORT);
-        System.out.println("");
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            Socket socket = serverSocket.accept(); // 연결 될 때까지 이코드에서 블로킹 상태.
+            // --------------------------------------------
+            // 0단계 : 연결시킬 소켓을 기다림. 연결 될 때까지 이코드에서 블로킹 상태.
+            // --------------------------------------------
+            Socket socket = serverSocket.accept();
             System.out.println("클라이언트 연결됨 : " + socket.getInetAddress().getHostAddress());
 
             // 소켓에 연결된 입출력 스트림 준비.
@@ -110,7 +112,6 @@ public class FileServer {
             // 클라이언트 출력 방향만 닫았고 입력 방향은 살아 있으므로 서버가 보낸 응답을 정상적으로 받을 수 있음.
             out.write(("업로드 성공 : " + fileName).getBytes());
             out.flush(); // 통로에 남은 데이터를 다 밀어냄.
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);

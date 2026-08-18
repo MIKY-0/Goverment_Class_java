@@ -13,7 +13,7 @@ import java.util.Scanner;
  *  [나머지] 파일 내용
  */
 public class FileClient {
-    private static String HOST = "192.168.5.9";
+    private static String HOST = "localhost";
     private static int PORT = 5000;
 
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class FileClient {
 //        String filePath = scanner.nextLine();
         String filePath = "C:\\Users\\user\\Documents\\Lightshot\\aaa.png";
 
-        File file = new File(filePath);
+        File file = new File(filePath); // 파일 객체만 만드는 것이라서 try-catch 안해도됨.
         if(file.exists() || file.isFile()) {
             System.out.println("파일이 존재하지 않거나 폴더 경로입니다." + filePath);
             return;
@@ -31,7 +31,7 @@ public class FileClient {
         // 클라이언트 입장에서는 서버측에 경로를 제외하고 파일 명만 보내야함.
         // C:\work_java\test.txt --> test.txt만 경로에서 걸러내야함. 경로를 통째로 보내면 서버가 엉뚱한 위치에
         // 저장하므로 이름만 보냄.
-        String fileName = file.getName();
+        String fileName = file.getName(); // aaa.png 만 가져옴.
         byte[] nameBytes = fileName.getBytes();
 
         // 이름의 길이를 1바이트에 담아 보내므로 255를 넘으면 안됨.(프로토콜)
@@ -42,6 +42,9 @@ public class FileClient {
         }
         System.out.println("전송할 파일 : " + fileName + "(" +file.length() +  "바이트)" );
 
+        // --------------------------------------------
+        // 0단계 : 연결할 소켓 생성.
+        // --------------------------------------------
         try (Socket socket = new Socket(HOST, PORT)) {
         OutputStream out = socket.getOutputStream();
         InputStream in = socket.getInputStream();
@@ -49,9 +52,9 @@ public class FileClient {
             // --------------------------------------------
             // 1단계 : 파일 이름 길이 전송(1바이트)
             // --------------------------------------------
-        out.write(nameBytes.length);
+            out.write(nameBytes.length);
 
-        // --------------------------------------------
+            // --------------------------------------------
             // 2단계 : 파일 이름 전송(N바이트)
             // --------------------------------------------
             out.write(nameBytes);
@@ -85,7 +88,7 @@ public class FileClient {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("파일 경로 못찾음");
         }
 
     }
