@@ -1,0 +1,8 @@
+package com.oop8;
+
+public class MainTest1 {
+    public static void main(String[] args) {
+        Person p1 = new Person("홍" , 10 , "1234" , "M");
+
+    }
+}

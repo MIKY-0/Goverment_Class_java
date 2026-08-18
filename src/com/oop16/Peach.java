@@ -1,0 +1,9 @@
+package com.oop16;
+
+public class Peach extends Fruit{
+    // name , price , showInfo()를 Fruit에게 물려받음.
+    public Peach() {
+        name = "복숭아";
+        price = 8000;
+    }
+}
