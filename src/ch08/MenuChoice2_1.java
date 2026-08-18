@@ -14,7 +14,7 @@ public class MenuChoice2_1 {
         final int UPDATE = 3;
         final int DELETE = 4;
         final int EXIT = 0;
-
+//
         while (true) {
             System.out.print("1.등록\t2.조회\t3.수정\t4.삭제\t0.종료\n 입력 : ");
             int choice = scanner.nextInt();
