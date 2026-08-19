@@ -23,7 +23,7 @@ public class FileServer {
 
         if(!dir.exists()) { // dir("uploads) 폴더가 없으면
             // mkdirs() : 이를 호출하는 이 순간에 비로써 실제 폴더를 만들 수 있음.
-            // mkdir() : mkdirs()과 달리 중간 경로까지 한번에 만들어줌.
+            // mkdir() : mkdirs()과 달리 중간 경로까지 한번에 안만들어줌. 생성하려는 폴더 없으면 생성실패.
             boolean created = dir.mkdirs();
             System.out.println("업로드 폴더 생성." + created);
         }
@@ -33,7 +33,7 @@ public class FileServer {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             // --------------------------------------------
             // 0단계 : 연결시킬 소켓을 기다림. 연결 될 때까지 이코드에서 블로킹 상태.
-            // --------------------------------------------
+            // --------------------------------------------;'
             Socket socket = serverSocket.accept();
             System.out.println("클라이언트 연결됨 : " + socket.getInetAddress().getHostAddress());
 

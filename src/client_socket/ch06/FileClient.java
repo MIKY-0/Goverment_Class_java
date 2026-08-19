@@ -23,7 +23,7 @@ public class FileClient {
         String filePath = "C:\\Users\\user\\Documents\\Lightshot\\aaa.png";
 
         File file = new File(filePath); // 파일 객체만 만드는 것이라서 try-catch 안해도됨.
-        if(file.exists() || file.isFile()) {
+        if(!file.exists() || !file.isFile()) {
             System.out.println("파일이 존재하지 않거나 폴더 경로입니다." + filePath);
             return;
         }
