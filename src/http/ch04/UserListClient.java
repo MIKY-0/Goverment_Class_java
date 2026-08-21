@@ -47,7 +47,6 @@ public class UserListClient {
             // 3명만 출력.
                 List<User> lists = users.stream()
                         .limit(3)
-//                        .map( () -> users + "\n")
                         .collect(Collectors.toList());
 
                 System.out.println("요청 성공 (상태코드) : " + res);
