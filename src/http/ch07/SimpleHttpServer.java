@@ -107,7 +107,7 @@ public class SimpleHttpServer {
         }
     }
 
-    // JSON응답하는 경우는 다른 핸들러에서도 사용하는 경우가 발생할 수 있음.  여기서 로직을 따로 작성.
+    // JSON응답하는 경우는 다른 핸들러에서도 사용하는 경우가 생길 수 있음.  재활용위해 여기서 로직을 따로 작성.
     // new Gson().toJson(data) -> 자바 객체를 Json객체로 변환
     static void sendJson(HttpExchange exchange , int statusCode , Object data) throws IOException{
             sendResponse(exchange , statusCode , TYPE_JSON , new Gson().toJson(data));

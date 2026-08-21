@@ -56,7 +56,6 @@ public class HomeHandler implements HttpHandler {
         // MIME-TYPE : UTF-8 -> 안꺠짐.
 //        SimpleHttpServer.sendResponse(exchange , 200 , "text/plain; charset=UTF-8" , HOME_PAGE);
 
-
         }finally {
             exchange.close();
         }
