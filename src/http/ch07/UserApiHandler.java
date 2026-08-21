@@ -84,6 +84,11 @@ public class UserApiHandler implements HttpHandler {
      */
     private void handlePost(HttpExchange exchange) throws IOException{
         // 1. HTTP 요청 바디를 읽어야함.
+        /*
+        readRequsetBody(exchange)로 Post요청 바디를 읽고 문자열로 저장.
+        클라이언트가 요청한 Post는 서버에서 읽기전까지 문자열도 Json형식도 그 어떠한것에도 해당되지 않음.
+        이 코드에서는 우리가 바디를 읽어서 reqBody에 문자열로 저장.
+         */
         String reqBody = SimpleHttpServer.readRequestBody(exchange);
         System.out.println("POST 요청 [api/users] 받은 본문 확인 : " + reqBody);
 
@@ -91,6 +96,10 @@ public class UserApiHandler implements HttpHandler {
         // 주의 - 클라이언트가 부적절한 문자열을 보낼수 있는 경우를 생각해서 예외처리.
 
         try {
+            /*
+            근데 이 문자열이 Json형식이므로  new Gson().fromJson(reqBody , User.class)사용하여
+            받은 Json객체를 User 객체로 변환.  Post요청을 성공적으로 받으면 User객체에 저장.
+             */
             User user = new Gson().fromJson(reqBody , User.class);
 
             // 3. 검증.
@@ -108,6 +117,10 @@ public class UserApiHandler implements HttpHandler {
             int newId = addUser(user);
 
             // 5. 등록 성공은 200대신 201로 (Created)로 응답.
+            /*
+            새로 저장한 User객체를 성공적으로 등록됐다고 클라이언트에게 보여주기 위해 저장한 User 객체를
+            sendJson() 사용해서 Json객체로 다시 클라이언트에게 저장한 데이터만 보여줌.
+             */
             SimpleHttpServer.sendJson(exchange , 201 , user);
         } catch (JsonSyntaxException e) {
             SimpleHttpServer.sendResponse(exchange,
@@ -123,6 +136,5 @@ public class UserApiHandler implements HttpHandler {
          */
 
     }
-
 
 }// end of class
