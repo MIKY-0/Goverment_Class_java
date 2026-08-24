@@ -1,4 +1,4 @@
-package server;
+package uploads.src.server;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;

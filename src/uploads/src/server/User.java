@@ -1,4 +1,4 @@
-package server;
+package uploads.src.server;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
