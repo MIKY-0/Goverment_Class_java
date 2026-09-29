@@ -16,5 +16,4 @@ public class OrderService {
         System.out.println(newOrder.getMenuName() + " | 정가 : " + newOrder.getPrice() + "원 | 할인 : " + discountAmount
                 + "원 | 결제금액 : " + finalPrice + "원");
     }
-
 }

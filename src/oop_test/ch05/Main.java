@@ -2,10 +2,10 @@ package oop_test.ch05;
 
 public class Main {
     public static void main(String[] args) {
-//        DiscountPolicy discountPolicy = new FixDiscountPolicy();
-        DiscountPolicy discountPolicy = new RateDiscountPolicy();
+        DiscountPolicy a = new FixDiscountPolicy();
+        RateDiscountPolicy b = new RateDiscountPolicy();
 
-        OrderService orderService = new OrderService(discountPolicy);
+        OrderService orderService = new OrderService(a);
 
         orderService.takeOrder("아메리카노" , 4500);
         orderService.takeOrder("카페라떼" , 5000);
