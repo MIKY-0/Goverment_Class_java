@@ -6,5 +6,8 @@ public class WeekendPricePolicy implements PricePolicy{
     @Override
     public int calculate(int price) {
         return price * extraPercent / 100;
+
+
+
     }
 }
